@@ -94,7 +94,6 @@ class Game {
       new GameStatus(0, putCharacterDownGuess(guess, characterSeq, status.getBoard))
 
     } else status.updateStatusNum(1)
-
   }
 
   /**

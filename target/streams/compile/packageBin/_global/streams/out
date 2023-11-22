@@ -1,0 +1,23 @@
+[0m[[0m[0mdebug[0m] [0m[0mPackaging /Users/william.stanistreet/Documents/Scala/101/GuessWho/target/scala-2.13/guesswho_2.13-0.1.0-SNAPSHOT.jar ...[0m
+[0m[[0m[0mdebug[0m] [0m[0mInput file mappings:[0m
+[0m[[0m[0mdebug[0m] [0m[0m	GWCharacter$.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /Users/william.stanistreet/Documents/Scala/101/GuessWho/target/scala-2.13/classes/GWCharacter$.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	Board.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /Users/william.stanistreet/Documents/Scala/101/GuessWho/target/scala-2.13/classes/Board.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	Game.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /Users/william.stanistreet/Documents/Scala/101/GuessWho/target/scala-2.13/classes/Game.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	Runner.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /Users/william.stanistreet/Documents/Scala/101/GuessWho/target/scala-2.13/classes/Runner.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	GameStatus.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /Users/william.stanistreet/Documents/Scala/101/GuessWho/target/scala-2.13/classes/GameStatus.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	GWCharacterList.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /Users/william.stanistreet/Documents/Scala/101/GuessWho/target/scala-2.13/classes/GWCharacterList.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	Runner$delayedInit$body.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /Users/william.stanistreet/Documents/Scala/101/GuessWho/target/scala-2.13/classes/Runner$delayedInit$body.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	GWCharacterList$.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /Users/william.stanistreet/Documents/Scala/101/GuessWho/target/scala-2.13/classes/GWCharacterList$.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	Runner$.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /Users/william.stanistreet/Documents/Scala/101/GuessWho/target/scala-2.13/classes/Runner$.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	GWCharacter.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /Users/william.stanistreet/Documents/Scala/101/GuessWho/target/scala-2.13/classes/GWCharacter.class[0m
+[0m[[0m[0mdebug[0m] [0m[0mDone packaging.[0m
