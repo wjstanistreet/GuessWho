@@ -1,6 +1,6 @@
-import org.scalatest.FlatSpec
+import org.scalatest.flatspec._
 
-class GWCharacterSpec extends FlatSpec{
+class GWCharacterSpec extends AnyFlatSpec{
 
   "A Person" should "have a name" in {
     val me: GWCharacter = GWCharacter("William Stanistreet", "Male", 24, "short", "brown", "a green hat")

@@ -1,6 +1,9 @@
-import org.scalatest.{FlatSpec, Matchers}
 
-class GameSpec extends FlatSpec with Matchers {
+import org.scalatest.flatspec.AnyFlatSpec
+import org.scalatest.matchers._
+import org.scalatest.matchers.should.Matchers
+
+class GameSpec extends AnyFlatSpec with Matchers {
 
   "Processing a Game" should "return a status code" in {
     val board: Board = new Board(GWCharacterList.characterList)

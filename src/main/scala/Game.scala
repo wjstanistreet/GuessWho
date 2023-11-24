@@ -43,42 +43,36 @@ class Game {
    */
   def process(selectedCharacter: GWCharacter, characterSeq: Seq[GWCharacter], status: GameStatus): GameStatus = {
     // Status Code 0: Prompt the user to guess or question the characters on the board
-    if (status.getStatus == 0) {
-      println("Do you want to make a guess or ask a question?")
-      val guessOrQ: String = StdIn.readLine().toLowerCase.trim
-
-      if (guessOrQ == "help") process(selectedCharacter, characterSeq, status.updateStatusNum(2))
-
-      // Chooses which user prompt to process
-      if (guessOrQ.toLowerCase == "g" || guessOrQ.toLowerCase == "guess") {
-        val updatedStatus: GameStatus = processGuess(selectedCharacter, characterSeq, status)
-        process(selectedCharacter, updatedStatus.getBoard.personSeq, updatedStatus)
-      }
-      else if (guessOrQ.toLowerCase == "q" || guessOrQ.toLowerCase == "question") {
-        val updatedStatus: GameStatus = processQuestion(selectedCharacter, characterSeq, status)
-        process(selectedCharacter, updatedStatus.getBoard.personSeq, updatedStatus)
-      }
-      else process(selectedCharacter, characterSeq, status.updateStatusNum(0))
-
+    status.getStatus match {
+      case 0 => processGuessQuestionPrompt(selectedCharacter, characterSeq, status)
+      case 1 => status.updateStatusNum(1)
+      case 2 => printInstructions(); process(selectedCharacter, characterSeq, status.updateStatusNum(0))
+      case _ => process(selectedCharacter, characterSeq, status.updateStatusNum(0))
     }
-    // Status code 1: When the user has guesses correctly, end the game
-    else if (status.getStatus == 1) {
-      status.updateStatusNum(1)
+  }
 
-    }
-    // Status code 2: When a user inputs "help", print the instructions
-    else if (status.getStatus == 2) {
-      printInstructions()
-      process(selectedCharacter, characterSeq, status.updateStatusNum(0))
-    }
+  private def processGuessQuestionPrompt(selectedCharacter: GWCharacter, characterSeq: Seq[GWCharacter], status: GameStatus) = {
+    println("Do you want to make a guess or ask a question?")
+    val guessOrQ: String = StdIn.readLine().toLowerCase.trim
 
-    // When a user inputs something that's not recognised, repeat the prompt
-    else process(selectedCharacter, characterSeq, status.updateStatusNum(0))
+    if (guessOrQ == "help") process(selectedCharacter, characterSeq, status.updateStatusNum(2))
+
+    lazy val processGuessVal    = processGuess(selectedCharacter, characterSeq, status)
+    lazy val processQuestionVal = processQuestion(selectedCharacter, characterSeq, status)
+
+    guessOrQ match {
+      case "g"        => process(selectedCharacter, processGuessVal.getBoard.personSeq, processGuessVal)
+      case "guess"    => process(selectedCharacter, processGuessVal.getBoard.personSeq, processGuessVal)
+      case "q"        => process(selectedCharacter, processQuestionVal.getBoard.personSeq, processQuestionVal)
+      case "question" => process(selectedCharacter, processQuestionVal.getBoard.personSeq, processQuestionVal)
+      case _          => process(selectedCharacter, characterSeq, status.updateStatusNum(0))
+    }
   }
 
   /**
    * Prompts the user to guess who the mystery character is. If the user guesses correctly,
    * processGuess returns true
+ *
    * @param selectedCharacter - The randomly selected mystery character for the game
    * @param board - The current board state
    * @return An updated game status
@@ -123,7 +117,7 @@ class Game {
   def endGame(): Unit = {
     println("Congratulations, you guessed it correctly! Well done! \nDo you want to play again?")
     val input = StdIn.readLine().toLowerCase.trim
-    if (input == "yes") start()
+    if (input == "yes" || input == "y") start()
   }
 
   /**
@@ -214,19 +208,25 @@ class Game {
    * @return Reduced character sequence to continue the game
    */
   def ageGuess(randomCharacter: GWCharacter, characterSeq: Seq[GWCharacter]): Seq[GWCharacter] = {
-    println("How old is the character?")
-    val guess: String = StdIn.readLine().toLowerCase.trim
-    val newCharacterSeq: Seq[GWCharacter] =
-      if (randomCharacter.age.toString == guess) {
-        println(s"Yes! The mystery character is ${randomCharacter.age} years old!")
-        characterSeq.filter(character => character.age.toString == guess)
-      } else {
-        println(s"No... the mystery character isn't $guess years old.")
-        characterSeq.filter(character => character.age.toString != guess)
+    println("How old is the character? Please enter a numeral, e.g: 1, 18, 43")
+      val guess: String = StdIn.readLine().toLowerCase.trim.toString
+    try {
+      val newCharacterSeq: Seq[GWCharacter] =
+        if (randomCharacter.age.toString == guess) {
+          println(s"Yes! The mystery character is ${randomCharacter.age} years old!")
+          characterSeq.filter(character => character.age.toString == guess)
+        } else {
+          println(s"No... the mystery character isn't $guess years old.")
+          characterSeq.filter(character => character.age.toString != guess)
+        }
+      println(s"You put down ${characterSeq.length - newCharacterSeq.length} people")
+      newCharacterSeq
+    } catch {
+      case nonNumeral: NumberFormatException => {
+        println(s"$nonNumeral: You've entered a number name, please enter a numeral, e.g: 1, 18, 43 ")
+        characterSeq
       }
-
-    println(s"You put down ${characterSeq.length - newCharacterSeq.length} people")
-    newCharacterSeq
+    }
   }
 
   /**

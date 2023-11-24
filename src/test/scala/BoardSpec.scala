@@ -1,6 +1,6 @@
-import org.scalatest.FlatSpec
+import org.scalatest.flatspec._
 
-class BoardSpec extends FlatSpec {
+class BoardSpec extends AnyFlatSpec {
   val characterList: Seq[GWCharacter] = GWCharacterList.characterList
 
   "a Board" should "have a seq field" in {

@@ -1,6 +1,10 @@
 object GWCharacterList {
-  val characterList: Seq[GWCharacter] = Seq(GWCharacter("Ash Ketchum", "Male", 10,"short", "brown", "a red hat"),
-                                    GWCharacter("Lara Croft", "Female", 21,"long", "brown", "2 guns"),
-                                    GWCharacter("Mario Mario", "Male", 42,"short", "brown", "a red hat"),
-                                    GWCharacter("Link", "Male", 16, "short", "blonde", "a green hat"))
+  val characterList: Seq[GWCharacter] =
+    Seq(
+      GWCharacter("Will Stanistreet", "Male", 24, "medium", "brown", "a blue jumper"),
+      GWCharacter("Omiros Trypatsas", "Male", 24,"short", "black", "a blue jumper"),
+      GWCharacter("Aashvin Relwani", "Male", 24, "short", "brown", "a seasac shirt"),
+      GWCharacter("Sarina Salomon", "Female", 24, "long", "black", "black boots"),
+      GWCharacter("Connie Bernardin", "Female", 24, "medium", "blonde", "a gilet")
+    )
 }

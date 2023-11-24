@@ -1,7 +1,10 @@
-import org.scalatest.{FlatSpec, BeforeAndAfterEach, Matchers}
+import org.scalatest.flatspec._
+import org.scalatest.BeforeAndAfterEach
+import org.scalatest.matchers._
+import org.scalatest.matchers.should.Matchers
 //import org.scalatest.matchers.should
 
-class GameStatusSpec extends FlatSpec with BeforeAndAfterEach with Matchers{
+class GameStatusSpec extends AnyFlatSpec with BeforeAndAfterEach with Matchers{
 
   var gameStatus: GameStatus = null
 
