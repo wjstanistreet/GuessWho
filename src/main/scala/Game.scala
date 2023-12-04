@@ -72,7 +72,7 @@ class Game {
   /**
    * Prompts the user to guess who the mystery character is. If the user guesses correctly,
    * processGuess returns true
- *
+   *
    * @param selectedCharacter - The randomly selected mystery character for the game
    * @param board - The current board state
    * @return An updated game status
@@ -147,17 +147,16 @@ class Game {
    * @return Updated board state
    */
   def putCharacterDownQuestion(attribute: String, selectedCharacter: GWCharacter, characterSeq: Seq[GWCharacter]): Board = {
+    // TODO: REFACTOR FOR TESTING
     // Create a filtered sequence from
-    val filteredSeq: Seq[GWCharacter] =
-      if      (attribute == "1"   ||  attribute == "gender")      genderGuess(selectedCharacter, characterSeq)
-      else if (attribute == "2"   ||  attribute == "age")         ageGuess(selectedCharacter, characterSeq)
-      else if (attribute == "3"   ||  attribute == "hair colour") hairColourGuess(selectedCharacter, characterSeq)
-      else if (attribute == "4"   ||  attribute == "hair length") hairLengthGuess(selectedCharacter, characterSeq)
-      else if (attribute == "5"   ||  attribute == "accessory")   accessoryGuess(selectedCharacter, characterSeq)
-      else {
-        println("Attribute not recognised, try again...")
-        characterSeq
-      }
+    val filteredSeq: Seq[GWCharacter] = attribute match {
+      case "gender"       | "1" => genderGuess(selectedCharacter, characterSeq)
+      case "age"          | "2" => ageGuess(selectedCharacter, characterSeq)
+      case "hair colour"  | "3" => hairColourGuess(selectedCharacter, characterSeq)
+      case "hair length"  | "4" => hairLengthGuess(selectedCharacter, characterSeq)
+      case "accessory"    | "5" => accessoryGuess(selectedCharacter, characterSeq)
+      case _ => println("Attribute not recognised, try again..."); characterSeq
+    }
 
     val newBoard: Board = new Board(filteredSeq)
     newBoard.printRemainingCharacters()
@@ -186,6 +185,7 @@ class Game {
    * @return Reduced character sequence to continue the game
    */
   def genderGuess(randomCharacter: GWCharacter, characterSeq: Seq[GWCharacter]): Seq[GWCharacter] = {
+    // TODO: REFACTOR FOR TESTING
     println("Is the character male or female?")
     val guess: String = StdIn.readLine().toLowerCase.trim
     val newCharacterSeq: Seq[GWCharacter] =
@@ -208,11 +208,12 @@ class Game {
    * @return Reduced character sequence to continue the game
    */
   def ageGuess(randomCharacter: GWCharacter, characterSeq: Seq[GWCharacter]): Seq[GWCharacter] = {
+    // TODO: REFACTOR FOR TESTING
     println("How old is the character? Please enter a numeral, e.g: 1, 18, 43")
-      val guess: String = StdIn.readLine().toLowerCase.trim.toString
+      val guess: String = StdIn.readLine().toLowerCase.trim
     try {
       val newCharacterSeq: Seq[GWCharacter] =
-        if (randomCharacter.age.toString == guess) {
+        if (randomCharacter.age == guess.toInt) {
           println(s"Yes! The mystery character is ${randomCharacter.age} years old!")
           characterSeq.filter(character => character.age.toString == guess)
         } else {
@@ -223,7 +224,7 @@ class Game {
       newCharacterSeq
     } catch {
       case nonNumeral: NumberFormatException => {
-        println(s"$nonNumeral: You've entered a number name, please enter a numeral, e.g: 1, 18, 43 ")
+        println("You've entered a number name, please enter a numeral, e.g: 1, 18, 43 ")
         characterSeq
       }
     }
@@ -236,6 +237,7 @@ class Game {
    * @return Reduced character sequence to continue the game
    */
   def hairColourGuess(randomCharacter: GWCharacter, characterSeq: Seq[GWCharacter]): Seq[GWCharacter] = {
+    // TODO: REFACTOR FOR TESTING
     println("Does the character have black, brown, blonde, or red hair?")
     val guess: String = StdIn.readLine().toLowerCase.trim
     val newCharacterSeq: Seq[GWCharacter] =
@@ -258,6 +260,7 @@ class Game {
    * @return Reduced character sequence to continue the game
    */
   def hairLengthGuess(randomCharacter: GWCharacter, characterSeq: Seq[GWCharacter]): Seq[GWCharacter] = {
+    // TODO: REFACTOR FOR TESTING
     println("Does the character have short or long hair?")
     val guess: String = StdIn.readLine().toLowerCase.trim
     val newCharacterSeq: Seq[GWCharacter] =
@@ -280,6 +283,7 @@ class Game {
    * @return Reduced character sequence to continue the game
    */
   def accessoryGuess(randomCharacter: GWCharacter, characterSeq: Seq[GWCharacter]): Seq[GWCharacter] = {
+    // TODO: REFACTOR FOR TESTING
     println("What accessory does the character have?")
     val guess: String = StdIn.readLine().toLowerCase.trim
     val newCharacterSeq: Seq[GWCharacter] =
